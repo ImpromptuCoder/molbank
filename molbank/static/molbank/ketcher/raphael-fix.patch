@@ -1,0 +1,20 @@
+--- gg/Gruntfile.js	2015-12-05 12:25:05.000000000 +0300
++++ Gruntfile.js	2016-11-18 17:54:31.652198442 +0300
+@@ -11,7 +11,7 @@
+ 			src: ['script/**', 'style/**', 'icons/**',
+ 			      'template/**', 'Gruntfile.js', 'package.json',
+ 			      '.jshintrc', '.editorconfig'],
+-			libs: ['prototype-min.js', 'raphael-min.js'],
++			libs: ['prototype-min.js', 'raphael.min.js'],
+ 			// add 'es5-shim' when prototype goes
+ 			polyfills: ['html5shiv'],
+ 			build: ['<%= browserify.default.dest %>',
+@@ -146,7 +146,7 @@
+ 			raphael: {
+ 				expand: true,
+ 				flatten: true,
+-				src: require.resolve('raphael/raphael-min.js'),
++				src: require.resolve('raphael/raphael.min.js'),
+ 				dest: 'dist'
+ 			},
+ 			// TODO: find better place to store static

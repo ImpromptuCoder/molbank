@@ -1,0 +1,41 @@
+{% extends "molbank/base.html" %}
+{% block script %}
+<script type="text/javascript">
+	function lol(){
+	var ketcherFrame = document.getElementById('encoder_iframe');
+	console.log('ketcher frame entered xD',ketcherFrame);
+	var ketcher = null;
+
+	if ('contentDocument' in ketcherFrame)
+	ketcher = ketcherFrame.contentWindow.ketcher;
+	else // IE7
+	ketcher = document.frames['ifKetcher'].window.ketcher;
+	mol=ketcher.getSmiles();
+	document.getElementById('text_smiles').value=mol;
+	// alert(mol);
+}
+</script>
+{% endblock %}
+{%block title%}
+SEARCH
+{%endblock%}
+{% block heading%}
+<p> Search </p>
+
+<h5> Use the editor to draw / paste smiles in search bar </h5>
+{% endblock %}
+{% block search_snippet%}
+{% load static %}
+<!-- <link type="text/javascript" href="{% static 'molbank/js/mol.js' %}"> -->
+<iframe id="encoder_iframe" height=400px width=75% src="{% static 'molbank/ketcher/dist/ketcher.html'%}"></iframe>
+<form name="myform" method="POST" action="/molbank/contact">
+	{% csrf_token %}	
+	<input type="text" name="text_smiles" id="text_smiles" style="color: #000000;" placeholder="Enter SMILES to search" />
+	<input type="button" class="btn btn-primary" name="random1" value="get from ketcher" onclick="lol();"/>
+<!-- 	<input type="button" class="btn btn-danger" name="random" value="Don't Click" onclick="(function(){
+    alert('WHY DO YOU CLICK -__- ');
+})();"/> -->
+	<input type="submit" value="Search"/>
+</form>
+
+{% endblock %}

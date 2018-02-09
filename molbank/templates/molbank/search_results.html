@@ -1,0 +1,28 @@
+{% extends "molbank/base.html" %}
+{%block title%}
+SEARCH RESULTS
+{%endblock%}
+{% block heading%}
+<p> Search Results Page </p>
+{% endblock %}
+{% block content%}
+<center>
+	{%if molecule_list %}
+	<div class="container">
+	<table class="table table-hover" >
+		<tr>
+			<th>ID</th>
+			<th>SMILES</th>
+			<th>SAMPLE_CODE</th>
+		</tr>
+		{%for molecule in molecule_list%}
+		<tr><td>{{molecule.ID}}</td><td>{{molecule.SMILES}}</td><td>{{molecule.SAMPLE_CODE}}</td></tr>
+		{%endfor%}
+	</table>
+	{%else%}
+	<p> No match found... </p>
+	<p><a href="search"> Try searching again </a></p>
+</div>
+	{%endif%}
+</center>
+{% endblock %}

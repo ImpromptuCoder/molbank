@@ -1,0 +1,25 @@
+{%extends "molbank/base.html"%}
+{%block title%}
+ADD MOLECULES
+{%endblock%}
+{% block heading%}
+<p> Search For </p>
+{% endblock %}
+{% block search_snippet%}
+{% if messages %}
+  <ul class="messages">
+   {% for message in messages %}
+   <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+   {% endfor %}
+  </ul>
+  {% endif %}
+<form name="myform" method="POST" action="">
+	{% csrf_token %}	
+	{{form.as_p}}
+ <input type="submit" name="submit" value="insert">
+<!-- 	<input type="text" name="text_id" style="color: #000000;" placeholder="ID" >
+	<input type="text" name="text_smiles" onclick="verifyID();" style="color: #000000;" placeholder="SMILES" />
+	<input type="text" name="text_sample_code" style="color: #000000;" placeholder="SAMPLE_CODE" />
+	<input type="submit" value="ADD" /> -->
+</form>
+{% endblock %}
